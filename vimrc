@@ -1,6 +1,11 @@
 "begin open or update the vim, it will print the image
 echom ">^.^<"
 
+set number
+set numberwidth=4
+set shiftround
+set shiftwidth=4
+
 "not roll screen
 set nowrap
 
@@ -15,6 +20,8 @@ nnoremap <c-u> <esc>viwU
 
 "set leader
 let mapleader = ","
+"set local leader
+let maplocalleader = "\\"
 
 "open the vim config
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -39,3 +46,22 @@ inoremap <esc> <nop>
 "set the <esc> key
 inoremap jk <esc>
 
+augroup mygroup
+    autocmd!
+    "when open a new file, it wild create it and save
+    autocmd BufNewFile * :write
+
+    "before read or write a html file, adjustment format
+    autocmd BufWritePre,BufRead *.html :normal gg=G
+
+    "note a line accroding to the filetype
+    autocmd FileType c nnoremap <buffer> <localleader>c I/*<space><esc>$a<space>*/<esc>
+
+    "delete note
+    autocmd FileType c nnoremap <buffer> <localleader>d 0xxx$xxx
+augroup END
+
+"e.g: d( mean clear the word in ()
+onoremap ( i(
+"e.g: d{ mean clear the word in {}
+onoremap { i{
