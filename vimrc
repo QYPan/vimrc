@@ -14,10 +14,18 @@ augroup END
 " }}}
 
 " Basic settings -------- {{{
+set mouse=a
 set number
 set numberwidth=4
 set shiftround
 set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set noexpandtab
+set autoindent
+set lines=30 columns=130
+" indent for c
+set cindent
 
 "not roll screen
 set nowrap
@@ -52,7 +60,7 @@ nnoremap H 0
 "move to the end of current line
 nnoremap L $
 
-"ignore the <esc> key
+"ignore the <esc> key in insert model
 inoremap <esc> <nop>
 "set the <esc> key
 inoremap jk <esc>
