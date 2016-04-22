@@ -71,11 +71,18 @@ set softtabstop=4
 set noexpandtab
 set autoindent
 set lines=30 columns=130
+
+"translation from sdcv, so it will work if you have install sdcv
+set keywordprg=sdcv
+
 " indent for c
 set cindent
 
 "not roll screen
 set nowrap
+
+"highlight search
+set hlsearch incsearch
 
 "set leader
 let mapleader = ","
@@ -101,6 +108,11 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
 "add apostrophe for a word
 nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+"highlight the blank
+nnoremap <leader>w :match ErrorMsg /\v\<space>/<cr>
+"clear the match
+nnoremap <leader>W :match none<cr>
 
 "move to the begin of current line
 nnoremap H 0
