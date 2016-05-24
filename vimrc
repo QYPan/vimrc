@@ -1,35 +1,3 @@
-" Init --------- {{{
-set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-" }}}
-
 " Vundle config ----- {{{
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -77,11 +45,12 @@ filetype plugin indent on    " required
 " }}}
 
 " Introduction ------- {{{
-"begin open or update the vim, it will print the image
+"
+" 打开 vim 就会输出以下表情字符
 echom ">^.^<"
 
-"my label
-iabbrev ssig <cr>PQY<cr>QingYouPan1994@163.com
+" 标签，输入 ssig 就会转换
+iabbrev ssig <cr>PQY<cr>qypan1994@163.com
 " }}}
 
 " Vimscript file settings ---------- {{{
@@ -92,10 +61,20 @@ augroup END
 " }}}
 
 " Basic settings -------- {{{
+"
+" 设置黑底白字
 hi Normal ctermbg=black ctermfg=white
+
+" 打开基本语法高亮
 syntax on
+
+" 使用鼠标
 set mouse=a
+
+" 使用行号
 set number
+
+" 设置行号宽度
 set numberwidth=4
 set shiftround
 set shiftwidth=4
@@ -103,30 +82,37 @@ set tabstop=4
 set softtabstop=4
 set noexpandtab
 set autoindent
+
+" 设置窗口大小，不是所有平台都有效
 set lines=30 columns=130
+
+" 设置背景状况，亮(light)，暗(dark)
 set bg=dark
+
 setlocal foldmethod=indent
 
-"translation from sdcv, so it will work if you have install sdcv
+" 开启单词翻译功能，需安装 sdcv；安装后在 vim 里按 ctrl+k 可翻译光标所在单词
 set keywordprg=sdcv
 
-" indent for c
+" 开启 C 风格缩进
 set cindent
 
-"not roll screen
+" 当字符串长度超出窗口宽度时不换行
 set nowrap
 
-"highlight search
+" 搜索字符串时高亮显示
 set hlsearch incsearch
 
-"set leader
+" 设置缓冲按键前缀
 let mapleader = ","
-"set local leader
+
+" 设置本地缓冲按键前缀
 let maplocalleader = "\\"
 " }}}
 
 " Mappings --------- {{{
-"current line down
+"
+" 把当前行跟下面一行互换
 nnoremap - dd p
 
 "change the word into upper in insert model
